@@ -1,287 +1,351 @@
 <!doctype html>
 <html lang="es">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Sorpresa</title>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sorpresa</title>
+    <style>
+      body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: system-ui, Arial;
+        background: linear-gradient(135deg, #fff6e9, #eef6ff);
+        overflow: hidden;
+      }
 
-<style>
-  body{
-    margin:0;
-    height:100vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-family:system-ui,Arial;
-    background:linear-gradient(135deg,#fff6e9,#eef6ff);
-    overflow:hidden;
-  }
+      .card {
+        text-align: center;
+        background: white;
+        padding: 40px 30px;
+        border-radius: 20px;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+        width: min(520px, 90vw);
+        position: relative;
+        z-index: 2;
+      }
 
-  .card{
-    text-align:center;
-    background:white;
-    padding:40px 30px;
-    border-radius:20px;
-    box-shadow:0 15px 40px rgba(0,0,0,0.12);
-    width:min(520px,90vw);
-    position:relative;
-    z-index:2;
-  }
+      h1 {
+        margin: 0 0 14px;
+        font-size: 30px;
+      }
 
-  h1{
-    margin:0 0 14px;
-    font-size:30px;
-  }
+      .gift {
+        font-size: 42px;
+        margin-bottom: 10px;
+        animation: bounceGift 2.2s infinite;
+      }
 
-  .gift{
-    font-size:42px;
-    margin-bottom:10px;
-    animation:bounceGift 2.2s infinite;
-  }
+      @keyframes bounceGift {
 
-  @keyframes bounceGift{
-    0%,100%{transform:translateY(0)}
-    50%{transform:translateY(-8px)}
-  }
+        0%,
+        100% {
+          transform: translateY(0)
+        }
 
-  /* BOTÓN */
-  button{
-    border:none;
-    padding:15px 22px;
-    border-radius:14px;
-    font-size:16px;
-    font-weight:800;
-    cursor:pointer;
-    color:white;
-    background:linear-gradient(135deg,#ff6ec7,#6a5cff);
-    box-shadow:0 10px 25px rgba(0,0,0,0.2);
-    transition: transform .18s ease, filter .18s ease, box-shadow .18s ease;
-    will-change: transform;
-    -webkit-tap-highlight-color: transparent;
-  }
+        50% {
+          transform: translateY(-8px)
+        }
+      }
 
-  button:hover{
-    transform: translateY(-2px) scale(1.02);
-    filter: brightness(1.03);
-    box-shadow:0 14px 32px rgba(0,0,0,0.22);
-  }
+      button {
+        border: none;
+        padding: 15px 22px;
+        border-radius: 14px;
+        font-size: 16px;
+        font-weight: 800;
+        cursor: pointer;
+        color: white;
+        background: linear-gradient(135deg, #ff6ec7, #6a5cff);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        transition: transform .18s ease;
+      }
 
-  button:active{
-    transform: translateY(0px) scale(0.98);
-  }
+      button:hover {
+        transform: translateY(-2px) scale(1.02);
+      }
 
-  button[disabled]{
-    opacity:.7;
-    cursor:default;
-  }
+      button:active {
+        transform: scale(.98);
+      }
 
-  /* bounce extra al tocar */
-  .btn-bounce{
-    animation: btnBounce .42s cubic-bezier(.2,.9,.2,1) both;
-  }
-  @keyframes btnBounce{
-    0%{transform: scale(1)}
-    35%{transform: scale(1.06)}
-    70%{transform: scale(.98)}
-    100%{transform: scale(1)}
-  }
+      button[disabled] {
+        opacity: .7;
+      }
 
-  .count{
-    font-size:44px;
-    font-weight:900;
-    margin-top:16px;
-    height:52px; /* evita saltos */
-  }
+      .btn-bounce {
+        animation: btnBounce .42s cubic-bezier(.2, .9, .2, 1) both;
+      }
 
-  .reveal{
-    display:none;
-    margin-top:16px;
-  }
+      @keyframes btnBounce {
+        0% {
+          transform: scale(1)
+        }
 
-  .msg{
-    font-size:32px;
-    font-weight:900;
-  }
+        35% {
+          transform: scale(1.06)
+        }
 
-  .sunContainer{
-    margin-top:14px;
-    position:relative;
-    display:inline-block;
-  }
+        70% {
+          transform: scale(.98)
+        }
 
-  .sun{
-    font-size:52px;
-    position:relative;
-    z-index:2;
-  }
+        100% {
+          transform: scale(1)
+        }
+      }
 
-  .ray{
-    position:absolute;
-    width:4px;
-    height:18px;
-    background:#ffd93b;
-    top:50%;
-    left:50%;
-    transform-origin:center -20px;
-    animation:spin 5.5s linear infinite;
-    border-radius:3px;
-  }
+      .count {
+        font-size: 44px;
+        font-weight: 900;
+        margin-top: 16px;
+        height: 52px;
+      }
 
-  @keyframes spin{
-    from{transform:rotate(0deg) translateY(-40px)}
-    to{transform:rotate(360deg) translateY(-40px)}
-  }
+      .reveal {
+        display: none;
+        margin-top: 16px;
+      }
 
-  canvas{
-    position:fixed;
-    inset:0;
-    pointer-events:none;
-    z-index:1;
-  }
-</style>
-</head>
+      .msg {
+        font-size: 32px;
+        font-weight: 900;
+      }
 
-<body>
-<canvas id="confetti"></canvas>
+      /* HEART + SUN STAGE */
+      .iconStage {
+        position: relative;
+        width: 90px;
+        height: 90px;
+        margin: 20px auto 0;
+      }
 
-<div class="card">
-  <div class="gift">🎁</div>
-  <h1>¡Hola!</h1>
+      #heart {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 54px;
+        opacity: 0;
+        transform: scale(.3);
+      }
 
-  <button id="btn">Tocá el botón para descubrir algo</button>
+      .sunContainer {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transform: scale(.5);
+      }
 
-  <div id="count" class="count"></div>
+      .showHeart {
+        animation: heartPop .7s ease forwards;
+      }
 
-  <div id="reveal" class="reveal">
-    <div class="msg">Que la vida siempre encuentre motivos para hacerte sonreir, porque tu sonrisa ilumina a otros ♥️ </div>
+      .showSun {
+        animation: sunAppear .9s ease forwards;
+      }
 
-    <div class="sunContainer">
-      <div class="sun">☀️</div>
-      <div class="ray" style="transform:rotate(0deg) translateY(-40px)"></div>
-      <div class="ray" style="transform:rotate(45deg) translateY(-40px)"></div>
-      <div class="ray" style="transform:rotate(90deg) translateY(-40px)"></div>
-      <div class="ray" style="transform:rotate(135deg) translateY(-40px)"></div>
-      <div class="ray" style="transform:rotate(180deg) translateY(-40px)"></div>
-      <div class="ray" style="transform:rotate(225deg) translateY(-40px)"></div>
-      <div class="ray" style="transform:rotate(270deg) translateY(-40px)"></div>
-      <div class="ray" style="transform:rotate(315deg) translateY(-40px)"></div>
+      @keyframes heartPop {
+        0% {
+          opacity: 0;
+          transform: scale(.3)
+        }
+
+        60% {
+          opacity: 1;
+          transform: scale(1.2)
+        }
+
+        100% {
+          opacity: 1;
+          transform: scale(1)
+        }
+      }
+
+      @keyframes sunAppear {
+        0% {
+          opacity: 0;
+          transform: scale(.5)
+        }
+
+        100% {
+          opacity: 1;
+          transform: scale(1)
+        }
+      }
+
+      .sun {
+        font-size: 52px;
+        position: relative;
+        z-index: 2;
+      }
+
+      .ray {
+        position: absolute;
+        width: 4px;
+        height: 18px;
+        background: #ffd93b;
+        top: 50%;
+        left: 50%;
+        transform-origin: center -20px;
+        animation: spin 5.5s linear infinite;
+        border-radius: 3px;
+      }
+
+      @keyframes spin {
+        from {
+          transform: rotate(0deg) translateY(-40px)
+        }
+
+        to {
+          transform: rotate(360deg) translateY(-40px)
+        }
+      }
+
+      canvas {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 1;
+      }
+    </style>
+  </head>
+  <body><canvas id="confetti"></canvas>
+    <div class="card">
+      <div class="gift">🎁</div>
+      <h1>¡Hola!</h1><button id="btn">Tocá el botón para descubrir algo</button>
+      <div id="count" class="count"></div>
+      <div id="reveal" class="reveal">
+        <div class="msg"> Que la vida siempre encuentre motivos para hacerte sonreir, porque tu sonrisa ilumina a otros </div>
+        <div class="iconStage">
+          <div id="heart">❤️</div>
+          <div class="sunContainer">
+            <div class="sun">☀️</div>
+            <div class="ray" style="transform:rotate(0deg) translateY(-40px)"></div>
+            <div class="ray" style="transform:rotate(45deg) translateY(-40px)"></div>
+            <div class="ray" style="transform:rotate(90deg) translateY(-40px)"></div>
+            <div class="ray" style="transform:rotate(135deg) translateY(-40px)"></div>
+            <div class="ray" style="transform:rotate(180deg) translateY(-40px)"></div>
+            <div class="ray" style="transform:rotate(225deg) translateY(-40px)"></div>
+            <div class="ray" style="transform:rotate(270deg) translateY(-40px)"></div>
+            <div class="ray" style="transform:rotate(315deg) translateY(-40px)"></div>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
-
-<script>
-  const btn = document.getElementById("btn");
-  const reveal = document.getElementById("reveal");
-  const count = document.getElementById("count");
-
-  // ----- Confetti (arreglado: termina y limpia) -----
-  const canvas = document.getElementById("confetti");
-  const ctx = canvas.getContext("2d", { alpha: true });
-
-  function resize(){
-    const dpr = window.devicePixelRatio || 1;
-    canvas.width = Math.floor(window.innerWidth * dpr);
-    canvas.height = Math.floor(window.innerHeight * dpr);
-    canvas.style.width = window.innerWidth + "px";
-    canvas.style.height = window.innerHeight + "px";
-    ctx.setTransform(dpr,0,0,dpr,0,0);
-  }
-  window.addEventListener("resize", resize);
-  resize();
-
-  function rand(min,max){ return Math.random()*(max-min)+min; }
-
-  let pieces = [];
-  let confettiRunning = false;
-
-  function startConfetti(durationMs = 1600){
-    pieces = [];
-    const count = Math.min(240, Math.floor(window.innerWidth / 3));
-    for(let i=0;i<count;i++){
-      pieces.push({
-        x: rand(0, window.innerWidth),
-        y: rand(-window.innerHeight, 0),
-        w: rand(6, 12),
-        h: rand(8, 16),
-        vx: rand(-1.4, 1.4),
-        vy: rand(2.2, 5.6),
-        rot: rand(0, Math.PI*2),
-        vr: rand(-0.16, 0.16),
-        hue: rand(0, 360),
-        alpha: rand(0.75, 1),
+    <script>
+      const btn = document.getElementById("btn");
+      const reveal = document.getElementById("reveal");
+      const count = document.getElementById("count");
+      const heart = document.getElementById("heart");
+      const sun = document.querySelector(".sunContainer");
+      /* CONFETTI */
+      const canvas = document.getElementById("confetti");
+      const ctx = canvas.getContext("2d", {
+        alpha: true
       });
-    }
 
-    const endAt = performance.now() + durationMs;
-    confettiRunning = true;
-
-    function tick(t){
-      if(!confettiRunning) return;
-
-      ctx.clearRect(0,0,window.innerWidth,window.innerHeight);
-
-      for(const p of pieces){
-        p.x += p.vx;
-        p.y += p.vy;
-        p.rot += p.vr;
-
-        // wrap horizontal
-        if(p.x < -20) p.x = window.innerWidth + 20;
-        if(p.x > window.innerWidth + 20) p.x = -20;
-
-        ctx.save();
-        ctx.translate(p.x, p.y);
-        ctx.rotate(p.rot);
-        ctx.globalAlpha = p.alpha;
-
-        ctx.fillStyle = `hsl(${p.hue} 90% 55%)`;
-        ctx.fillRect(-p.w/2, -p.h/2, p.w, p.h);
-
-        ctx.restore();
+      function resize() {
+        const dpr = window.devicePixelRatio || 1;
+        canvas.width = window.innerWidth * dpr;
+        canvas.height = window.innerHeight * dpr;
+        canvas.style.width = window.innerWidth + "px";
+        canvas.style.height = window.innerHeight + "px";
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       }
+      window.addEventListener("resize", resize);
+      resize();
 
-      if(t >= endAt){
-        confettiRunning = false;
-        ctx.clearRect(0,0,window.innerWidth,window.innerHeight); // ✅ limpia al final
-        return;
+      function rand(min, max) {
+        return Math.random() * (max - min) + min
       }
-      requestAnimationFrame(tick);
-    }
+      let pieces = [];
+      let confettiRunning = false;
 
-    requestAnimationFrame(tick);
-  }
+      function startConfetti(durationMs = 1600) {
+        pieces = [];
+        const count = Math.min(240, Math.floor(window.innerWidth / 3));
+        for (let i = 0; i < count; i++) {
+          pieces.push({
+            x: rand(0, window.innerWidth),
+            y: rand(-window.innerHeight, 0),
+            w: rand(6, 12),
+            h: rand(8, 16),
+            vx: rand(-1.4, 1.4),
+            vy: rand(2.2, 5.6),
+            rot: rand(0, Math.PI * 2),
+            vr: rand(-0.16, 0.16),
+            hue: rand(0, 360),
+            alpha: rand(.75, 1)
+          });
+        }
+        const endAt = performance.now() + durationMs;
+        confettiRunning = true;
 
-  // ----- Interacción botón + contador -----
-  function bounceButton(){
-    btn.classList.remove("btn-bounce");
-    // reinicia animación
-    void btn.offsetWidth;
-    btn.classList.add("btn-bounce");
-  }
-
-  btn.addEventListener("click", () => {
-    if (btn.disabled) return;
-    btn.disabled = true;
-
-    bounceButton();
-
-    const nums = ["3","2","1"];
-    let i = 0;
-    count.textContent = nums[i];
-
-    const interval = setInterval(() => {
-      i++;
-      if(i < nums.length){
+        function tick(t) {
+          if (!confettiRunning) return;
+          ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+          for (const p of pieces) {
+            p.x += p.vx;
+            p.y += p.vy;
+            p.rot += p.vr;
+            if (p.x < -20) p.x = window.innerWidth + 20;
+            if (p.x > window.innerWidth + 20) p.x = -20;
+            ctx.save();
+            ctx.translate(p.x, p.y);
+            ctx.rotate(p.rot);
+            ctx.globalAlpha = p.alpha;
+            ctx.fillStyle = `hsl(${p.hue} 90% 55%)`;
+            ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+            ctx.restore();
+          }
+          if (t >= endAt) {
+            confettiRunning = false;
+            ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+            return;
+          }
+          requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+      }
+      /* BUTTON */
+      function bounceButton() {
+        btn.classList.remove("btn-bounce");
+        void btn.offsetWidth;
+        btn.classList.add("btn-bounce");
+      }
+      btn.addEventListener("click", () => {
+        if (btn.disabled) return;
+        btn.disabled = true;
+        bounceButton();
+        const nums = ["3", "2", "1"];
+        let i = 0;
         count.textContent = nums[i];
-      }else{
-        clearInterval(interval);
-        count.textContent = "";
-        reveal.style.display = "block";
-        startConfetti(1700);
-        if (navigator.vibrate) navigator.vibrate([40, 30, 40]);
-      }
-    }, 750);
-  });
-</script>
-</body>
+        const interval = setInterval(() => {
+          i++;
+          if (i < nums.length) {
+            count.textContent = nums[i];
+          } else {
+            clearInterval(interval);
+            count.textContent = "";
+            reveal.style.display = "block";
+            setTimeout(() => {
+              heart.classList.add("showHeart");
+            }, 300);
+            setTimeout(() => {
+              sun.classList.add("showSun");
+            }, 1100);
+            startConfetti(1700);
+            if (navigator.vibrate) navigator.vibrate([40, 30, 40]);
+          }
+        }, 750);
+      });
+    </script>
+  </body>
 </html>
