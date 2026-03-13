@@ -21,7 +21,7 @@
         background: white;
         padding: 40px 30px;
         border-radius: 20px;
-        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, .12);
         width: min(520px, 90vw);
         position: relative;
         z-index: 2;
@@ -59,7 +59,7 @@
         cursor: pointer;
         color: white;
         background: linear-gradient(135deg, #ff6ec7, #6a5cff);
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, .2);
         transition: transform .18s ease;
       }
 
@@ -110,11 +110,11 @@
       }
 
       .msg {
-        font-size: 32px;
+        font-size: 34px;
         font-weight: 900;
       }
 
-      /* HEART + SUN STAGE */
+      /* ICON STAGE */
       .iconStage {
         position: relative;
         width: 90px;
@@ -122,7 +122,7 @@
         margin: 20px auto 0;
       }
 
-      #heart {
+      #beach {
         position: absolute;
         inset: 0;
         display: flex;
@@ -143,15 +143,16 @@
         transform: scale(.5);
       }
 
-      .showHeart {
-        animation: heartPop .7s ease forwards;
+      /* ANIMATIONS */
+      .showBeach {
+        animation: iconPop .7s ease forwards;
       }
 
       .showSun {
         animation: sunAppear .9s ease forwards;
       }
 
-      @keyframes heartPop {
+      @keyframes iconPop {
         0% {
           opacity: 0;
           transform: scale(.3)
@@ -222,9 +223,9 @@
       <h1>¡Hola!</h1><button id="btn">Tocá el botón para descubrir algo</button>
       <div id="count" class="count"></div>
       <div id="reveal" class="reveal">
-        <div class="msg"> Que la vida siempre encuentre motivos para hacerte sonreir, porque tu sonrisa ilumina a otros </div>
+        <div class="msg"> ¿Nos vamos a Gesell? </div>
         <div class="iconStage">
-          <div id="heart">❤️</div>
+          <div id="beach">🏖️</div>
           <div class="sunContainer">
             <div class="sun">☀️</div>
             <div class="ray" style="transform:rotate(0deg) translateY(-40px)"></div>
@@ -243,7 +244,7 @@
       const btn = document.getElementById("btn");
       const reveal = document.getElementById("reveal");
       const count = document.getElementById("count");
-      const heart = document.getElementById("heart");
+      const beach = document.getElementById("beach");
       const sun = document.querySelector(".sunContainer");
       /* CONFETTI */
       const canvas = document.getElementById("confetti");
@@ -336,8 +337,8 @@
             count.textContent = "";
             reveal.style.display = "block";
             setTimeout(() => {
-              heart.classList.add("showHeart");
-            }, 300);
+              beach.classList.add("showBeach");
+            }, 400);
             setTimeout(() => {
               sun.classList.add("showSun");
             }, 1100);
