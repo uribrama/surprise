@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Sorpresa</title>
+
     <style>
       body {
         margin: 0;
@@ -39,14 +40,12 @@
       }
 
       @keyframes bounceGift {
-
-        0%,
-        100% {
-          transform: translateY(0)
+        0%, 100% {
+          transform: translateY(0);
         }
 
         50% {
-          transform: translateY(-8px)
+          transform: translateY(-8px);
         }
       }
 
@@ -81,19 +80,19 @@
 
       @keyframes btnBounce {
         0% {
-          transform: scale(1)
+          transform: scale(1);
         }
 
         35% {
-          transform: scale(1.06)
+          transform: scale(1.06);
         }
 
         70% {
-          transform: scale(.98)
+          transform: scale(.98);
         }
 
         100% {
-          transform: scale(1)
+          transform: scale(1);
         }
       }
 
@@ -110,102 +109,86 @@
       }
 
       .msg {
-        font-size: 34px;
+        font-size: 30px;
         font-weight: 900;
+        line-height: 1.25;
       }
 
-      /* ICON STAGE */
+      .submsg {
+        margin-top: 12px;
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 1.35;
+      }
+
       .iconStage {
-        position: relative;
-        width: 90px;
-        height: 90px;
-        margin: 20px auto 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 18px;
+        margin-top: 24px;
       }
 
-      #beach {
-        position: absolute;
-        inset: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 54px;
+      #clover,
+      #heart,
+      #star {
+        font-size: 58px;
         opacity: 0;
         transform: scale(.3);
       }
 
-      .sunContainer {
-        position: absolute;
-        inset: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        opacity: 0;
-        transform: scale(.5);
-      }
-
-      /* ANIMATIONS */
-      .showBeach {
+      .showClover,
+      .showHeart,
+      .showStar {
         animation: iconPop .7s ease forwards;
       }
 
-      .showSun {
-        animation: sunAppear .9s ease forwards;
+      #heart.showHeart {
+        animation:
+          iconPop .7s ease forwards,
+          pulseHeart 1.4s ease-in-out infinite .7s;
+      }
+
+      #star.showStar {
+        animation:
+          iconPop .7s ease forwards,
+          pulseStar 1.5s ease-in-out infinite .7s;
       }
 
       @keyframes iconPop {
         0% {
           opacity: 0;
-          transform: scale(.3)
+          transform: scale(.3);
         }
 
         60% {
           opacity: 1;
-          transform: scale(1.2)
+          transform: scale(1.2);
         }
 
         100% {
           opacity: 1;
-          transform: scale(1)
+          transform: scale(1);
         }
       }
 
-      @keyframes sunAppear {
-        0% {
-          opacity: 0;
-          transform: scale(.5)
+      @keyframes pulseHeart {
+        0%, 100% {
+          transform: scale(1);
         }
 
-        100% {
-          opacity: 1;
-          transform: scale(1)
+        50% {
+          transform: scale(1.12);
         }
       }
 
-      .sun {
-        font-size: 52px;
-        position: relative;
-        z-index: 2;
-      }
-
-      .ray {
-        position: absolute;
-        width: 4px;
-        height: 18px;
-        background: #ffd93b;
-        top: 50%;
-        left: 50%;
-        transform-origin: center -20px;
-        animation: spin 5.5s linear infinite;
-        border-radius: 3px;
-      }
-
-      @keyframes spin {
-        from {
-          transform: rotate(0deg) translateY(-40px)
+      @keyframes pulseStar {
+        0%, 100% {
+          transform: scale(1);
         }
 
-        to {
-          transform: rotate(360deg) translateY(-40px)
+        50% {
+          transform: scale(1.15);
         }
       }
 
@@ -217,36 +200,43 @@
       }
     </style>
   </head>
-  <body><canvas id="confetti"></canvas>
+
+  <body>
+    <canvas id="confetti"></canvas>
+
     <div class="card">
       <div class="gift">🎁</div>
-      <h1>¡Hola!</h1><button id="btn">Tocá el botón para descubrir algo</button>
+
+      <h1>Tengo algo para vos ✨</h1>
+
+      <button id="btn">Tocá para recibir un poquito de suerte 🍀</button>
+
       <div id="count" class="count"></div>
+
       <div id="reveal" class="reveal">
-        <div class="msg"> ¿Nos vamos a Gesell? </div>
+        <div class="msg">✨ Mensaje importante ✨</div>
+
+        <div class="submsg">
+          Muchísima suerte en tu presentación.<br>
+          Confío en vos y sé que te va a ir genial. ❤️
+        </div>
+
         <div class="iconStage">
-          <div id="beach">🏖️</div>
-          <div class="sunContainer">
-            <div class="sun">☀️</div>
-            <div class="ray" style="transform:rotate(0deg) translateY(-40px)"></div>
-            <div class="ray" style="transform:rotate(45deg) translateY(-40px)"></div>
-            <div class="ray" style="transform:rotate(90deg) translateY(-40px)"></div>
-            <div class="ray" style="transform:rotate(135deg) translateY(-40px)"></div>
-            <div class="ray" style="transform:rotate(180deg) translateY(-40px)"></div>
-            <div class="ray" style="transform:rotate(225deg) translateY(-40px)"></div>
-            <div class="ray" style="transform:rotate(270deg) translateY(-40px)"></div>
-            <div class="ray" style="transform:rotate(315deg) translateY(-40px)"></div>
-          </div>
+          <div id="clover">🍀</div>
+          <div id="heart">❤️</div>
+          <div id="star">⭐</div>
         </div>
       </div>
     </div>
+
     <script>
       const btn = document.getElementById("btn");
       const reveal = document.getElementById("reveal");
       const count = document.getElementById("count");
-      const beach = document.getElementById("beach");
-      const sun = document.querySelector(".sunContainer");
-      /* CONFETTI */
+      const clover = document.getElementById("clover");
+      const heart = document.getElementById("heart");
+      const star = document.getElementById("star");
+
       const canvas = document.getElementById("confetti");
       const ctx = canvas.getContext("2d", {
         alpha: true
@@ -254,25 +244,31 @@
 
       function resize() {
         const dpr = window.devicePixelRatio || 1;
+
         canvas.width = window.innerWidth * dpr;
         canvas.height = window.innerHeight * dpr;
         canvas.style.width = window.innerWidth + "px";
         canvas.style.height = window.innerHeight + "px";
+
         ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       }
+
       window.addEventListener("resize", resize);
       resize();
 
       function rand(min, max) {
-        return Math.random() * (max - min) + min
+        return Math.random() * (max - min) + min;
       }
+
       let pieces = [];
       let confettiRunning = false;
 
-      function startConfetti(durationMs = 1600) {
+      function startConfetti(durationMs = 1800) {
         pieces = [];
-        const count = Math.min(240, Math.floor(window.innerWidth / 3));
-        for (let i = 0; i < count; i++) {
+
+        const pieceCount = Math.min(240, Math.floor(window.innerWidth / 3));
+
+        for (let i = 0; i < pieceCount; i++) {
           pieces.push({
             x: rand(0, window.innerWidth),
             y: rand(-window.innerHeight, 0),
@@ -286,18 +282,23 @@
             alpha: rand(.75, 1)
           });
         }
+
         const endAt = performance.now() + durationMs;
         confettiRunning = true;
 
         function tick(t) {
           if (!confettiRunning) return;
+
           ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+
           for (const p of pieces) {
             p.x += p.vx;
             p.y += p.vy;
             p.rot += p.vr;
+
             if (p.x < -20) p.x = window.innerWidth + 20;
             if (p.x > window.innerWidth + 20) p.x = -20;
+
             ctx.save();
             ctx.translate(p.x, p.y);
             ctx.rotate(p.rot);
@@ -306,44 +307,64 @@
             ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
             ctx.restore();
           }
+
           if (t >= endAt) {
             confettiRunning = false;
             ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
             return;
           }
+
           requestAnimationFrame(tick);
         }
+
         requestAnimationFrame(tick);
       }
-      /* BUTTON */
+
       function bounceButton() {
         btn.classList.remove("btn-bounce");
         void btn.offsetWidth;
         btn.classList.add("btn-bounce");
       }
+
       btn.addEventListener("click", () => {
         if (btn.disabled) return;
+
         btn.disabled = true;
         bounceButton();
+
         const nums = ["3", "2", "1"];
         let i = 0;
+
         count.textContent = nums[i];
+
         const interval = setInterval(() => {
           i++;
+
           if (i < nums.length) {
             count.textContent = nums[i];
           } else {
             clearInterval(interval);
+
             count.textContent = "";
             reveal.style.display = "block";
+
             setTimeout(() => {
-              beach.classList.add("showBeach");
-            }, 400);
+              clover.classList.add("showClover");
+            }, 300);
+
             setTimeout(() => {
-              sun.classList.add("showSun");
-            }, 1100);
-            startConfetti(1700);
-            if (navigator.vibrate) navigator.vibrate([40, 30, 40]);
+              heart.classList.add("showHeart");
+            }, 800);
+
+            setTimeout(() => {
+              star.classList.add("showStar");
+            }, 1300);
+
+            startConfetti(1800);
+
+            if (navigator.vibrate) {
+              navigator.vibrate([40, 30, 40]);
+            }
           }
         }, 750);
       });
